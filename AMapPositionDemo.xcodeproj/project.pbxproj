@@ -7,6 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		67D6BE421DE810E30095EEDC /* AMapFoundationKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67D6BE401DE810E30095EEDC /* AMapFoundationKit.framework */; };
+		67D6BE431DE810E30095EEDC /* AMapSearchKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67D6BE411DE810E30095EEDC /* AMapSearchKit.framework */; };
+		67D6BE461DE8128A0095EEDC /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 67D6BE451DE8128A0095EEDC /* libc++.tbd */; };
+		67D6BE481DE812920095EEDC /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 67D6BE471DE812920095EEDC /* libz.tbd */; };
+		67D6BE4A1DE8129B0095EEDC /* libstdc++.6.0.9.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 67D6BE491DE8129B0095EEDC /* libstdc++.6.0.9.tbd */; };
+		67D6BE4C1DE812A40095EEDC /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67D6BE4B1DE812A40095EEDC /* AudioToolbox.framework */; };
+		67D6BE4E1DE812AB0095EEDC /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67D6BE4D1DE812AB0095EEDC /* AVFoundation.framework */; };
+		67D6BE501DE812B20095EEDC /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67D6BE4F1DE812B20095EEDC /* AddressBook.framework */; };
+		67D6BE521DE812B90095EEDC /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67D6BE511DE812B90095EEDC /* CoreTelephony.framework */; };
+		67D6BE541DE812C10095EEDC /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67D6BE531DE812C10095EEDC /* Security.framework */; };
+		67D6BE561DE812C70095EEDC /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67D6BE551DE812C70095EEDC /* SystemConfiguration.framework */; };
+		67D6BE581DE812CD0095EEDC /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67D6BE571DE812CD0095EEDC /* CoreGraphics.framework */; };
+		67D6BE5A1DE813E60095EEDC /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67D6BE591DE813E60095EEDC /* JavaScriptCore.framework */; };
 		67F5AA0E1DE80ED100B812A6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67F5AA0D1DE80ED100B812A6 /* AppDelegate.swift */; };
 		67F5AA101DE80ED100B812A6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67F5AA0F1DE80ED100B812A6 /* ViewController.swift */; };
 		67F5AA131DE80ED100B812A6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 67F5AA111DE80ED100B812A6 /* Main.storyboard */; };
@@ -15,6 +28,20 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		67D6BE3F1DE810A20095EEDC /* AMapPositionDemo-Bridge-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AMapPositionDemo-Bridge-Header.h"; sourceTree = "<group>"; };
+		67D6BE401DE810E30095EEDC /* AMapFoundationKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AMapFoundationKit.framework; sourceTree = "<group>"; };
+		67D6BE411DE810E30095EEDC /* AMapSearchKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AMapSearchKit.framework; sourceTree = "<group>"; };
+		67D6BE451DE8128A0095EEDC /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
+		67D6BE471DE812920095EEDC /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		67D6BE491DE8129B0095EEDC /* libstdc++.6.0.9.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.6.0.9.tbd"; path = "usr/lib/libstdc++.6.0.9.tbd"; sourceTree = SDKROOT; };
+		67D6BE4B1DE812A40095EEDC /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		67D6BE4D1DE812AB0095EEDC /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		67D6BE4F1DE812B20095EEDC /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
+		67D6BE511DE812B90095EEDC /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		67D6BE531DE812C10095EEDC /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		67D6BE551DE812C70095EEDC /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		67D6BE571DE812CD0095EEDC /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		67D6BE591DE813E60095EEDC /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		67F5AA0A1DE80ED100B812A6 /* AMapPositionDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AMapPositionDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		67F5AA0D1DE80ED100B812A6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		67F5AA0F1DE80ED100B812A6 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -29,17 +56,49 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				67D6BE5A1DE813E60095EEDC /* JavaScriptCore.framework in Frameworks */,
+				67D6BE581DE812CD0095EEDC /* CoreGraphics.framework in Frameworks */,
+				67D6BE561DE812C70095EEDC /* SystemConfiguration.framework in Frameworks */,
+				67D6BE541DE812C10095EEDC /* Security.framework in Frameworks */,
+				67D6BE521DE812B90095EEDC /* CoreTelephony.framework in Frameworks */,
+				67D6BE501DE812B20095EEDC /* AddressBook.framework in Frameworks */,
+				67D6BE4E1DE812AB0095EEDC /* AVFoundation.framework in Frameworks */,
+				67D6BE4C1DE812A40095EEDC /* AudioToolbox.framework in Frameworks */,
+				67D6BE4A1DE8129B0095EEDC /* libstdc++.6.0.9.tbd in Frameworks */,
+				67D6BE481DE812920095EEDC /* libz.tbd in Frameworks */,
+				67D6BE461DE8128A0095EEDC /* libc++.tbd in Frameworks */,
+				67D6BE431DE810E30095EEDC /* AMapSearchKit.framework in Frameworks */,
+				67D6BE421DE810E30095EEDC /* AMapFoundationKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		67D6BE441DE8128A0095EEDC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				67D6BE591DE813E60095EEDC /* JavaScriptCore.framework */,
+				67D6BE571DE812CD0095EEDC /* CoreGraphics.framework */,
+				67D6BE551DE812C70095EEDC /* SystemConfiguration.framework */,
+				67D6BE531DE812C10095EEDC /* Security.framework */,
+				67D6BE511DE812B90095EEDC /* CoreTelephony.framework */,
+				67D6BE4F1DE812B20095EEDC /* AddressBook.framework */,
+				67D6BE4D1DE812AB0095EEDC /* AVFoundation.framework */,
+				67D6BE4B1DE812A40095EEDC /* AudioToolbox.framework */,
+				67D6BE491DE8129B0095EEDC /* libstdc++.6.0.9.tbd */,
+				67D6BE471DE812920095EEDC /* libz.tbd */,
+				67D6BE451DE8128A0095EEDC /* libc++.tbd */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		67F5AA011DE80ED100B812A6 = {
 			isa = PBXGroup;
 			children = (
 				67F5AA0C1DE80ED100B812A6 /* AMapPositionDemo */,
 				67F5AA0B1DE80ED100B812A6 /* Products */,
+				67D6BE441DE8128A0095EEDC /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -54,7 +113,10 @@
 		67F5AA0C1DE80ED100B812A6 /* AMapPositionDemo */ = {
 			isa = PBXGroup;
 			children = (
+				67D6BE401DE810E30095EEDC /* AMapFoundationKit.framework */,
+				67D6BE411DE810E30095EEDC /* AMapSearchKit.framework */,
 				67F5AA0D1DE80ED100B812A6 /* AppDelegate.swift */,
+				67D6BE3F1DE810A20095EEDC /* AMapPositionDemo-Bridge-Header.h */,
 				67F5AA0F1DE80ED100B812A6 /* ViewController.swift */,
 				67F5AA111DE80ED100B812A6 /* Main.storyboard */,
 				67F5AA141DE80ED100B812A6 /* Assets.xcassets */,
@@ -96,6 +158,7 @@
 				TargetAttributes = {
 					67F5AA091DE80ED100B812A6 = {
 						CreatedOnToolsVersion = 8.1;
+						DevelopmentTeam = NM3KV9DZE7;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -260,10 +323,18 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = NM3KV9DZE7;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/AMapPositionDemo",
+				);
 				INFOPLIST_FILE = AMapPositionDemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.lifubing.demo.AMapPositionDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "/Users/lifubing/Documents/SwiftDemo/AMapPositionDemo/AMapPositionDemo/AMapPositionDemo-Bridge-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -272,10 +343,18 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = NM3KV9DZE7;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/AMapPositionDemo",
+				);
 				INFOPLIST_FILE = AMapPositionDemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.lifubing.demo.AMapPositionDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "/Users/lifubing/Documents/SwiftDemo/AMapPositionDemo/AMapPositionDemo/AMapPositionDemo-Bridge-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
@@ -299,6 +378,7 @@
 				67F5AA1E1DE80ED100B812A6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

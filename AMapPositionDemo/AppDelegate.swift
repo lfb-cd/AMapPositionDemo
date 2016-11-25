@@ -8,6 +8,8 @@
 
 import UIKit
 
+let APIKey = "960961c7bc259f4cab314031dcaea1e9"
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -16,6 +18,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        AMapServices.shared().apiKey = APIKey
         return true
     }
 
