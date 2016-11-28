@@ -11,5 +11,5 @@
 
 #import <AMapFoundationKit/AMapFoundationKit.h>
 #import <AMapSearchKit/AMapSearchKit.h>
-
+#import <MAMapKit/MAMapKit.h>
 #endif /* AMapPositionDemo_Bridge_Header_h */
