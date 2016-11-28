@@ -6,6 +6,8 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -15,24 +17,24 @@
             <rect key="frame" x="0.0" y="0.0" width="322" height="60"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="322" height="59.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="322" height="59"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="aSi-ei-pdf">
-                        <rect key="frame" x="10" y="5" width="30" height="30"/>
+                        <rect key="frame" x="10" y="17" width="20" height="27"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="30" id="0wC-Xn-i0p"/>
-                            <constraint firstAttribute="height" constant="30" id="lHK-VT-YMy"/>
+                            <constraint firstAttribute="width" constant="20" id="0wC-Xn-i0p"/>
+                            <constraint firstAttribute="width" secondItem="aSi-ei-pdf" secondAttribute="height" multiplier="14:19" id="Qc6-VI-y9C"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="长远天地大厦" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZvC-cs-Cpa">
-                        <rect key="frame" x="48" y="9.5" width="104" height="21"/>
+                        <rect key="frame" x="38" y="8" width="104" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="北京市海淀区苏州街18号" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ymz-0r-60m">
-                        <rect key="frame" x="48" y="30" width="158" height="17"/>
+                        <rect key="frame" x="38" y="29" width="158" height="17"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
@@ -40,9 +42,9 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="Ymz-0r-60m" firstAttribute="leading" secondItem="ZvC-cs-Cpa" secondAttribute="leading" id="P35-E5-haS"/>
+                    <constraint firstItem="aSi-ei-pdf" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="QKd-bc-mWk"/>
                     <constraint firstItem="ZvC-cs-Cpa" firstAttribute="leading" secondItem="aSi-ei-pdf" secondAttribute="trailing" constant="8" id="QrJ-AG-fQo"/>
-                    <constraint firstItem="ZvC-cs-Cpa" firstAttribute="centerY" secondItem="aSi-ei-pdf" secondAttribute="centerY" id="Umg-uM-67I"/>
-                    <constraint firstItem="aSi-ei-pdf" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="kZI-ah-BLp"/>
+                    <constraint firstItem="ZvC-cs-Cpa" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="ncR-8H-aGv"/>
                     <constraint firstItem="aSi-ei-pdf" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="w78-4h-Lhh"/>
                     <constraint firstItem="Ymz-0r-60m" firstAttribute="top" secondItem="ZvC-cs-Cpa" secondAttribute="bottom" constant="-0.5" id="wNa-VO-ge4"/>
                 </constraints>
