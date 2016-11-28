@@ -54,7 +54,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="65"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nfs-d7-oCc">
-                                        <rect key="frame" x="16" y="22" width="31" height="30"/>
+                                        <rect key="frame" x="8" y="25.5" width="31" height="30"/>
                                         <state key="normal" title="返回">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -63,7 +63,7 @@
                                         </connections>
                                     </button>
                                     <searchBar contentMode="scaleToFill" text="" placeholder="小区/写字楼/学校等" showsCancelButton="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fBh-Ej-Rjd">
-                                        <rect key="frame" x="56" y="15" width="264" height="44"/>
+                                        <rect key="frame" x="39" y="18.5" width="281" height="44"/>
                                         <color key="barTintColor" red="0.15686274510000001" green="0.56078431370000004" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </searchBar>
@@ -71,10 +71,10 @@
                                 <color key="backgroundColor" red="0.15686274509803921" green="0.5607843137254902" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstItem="fBh-Ej-Rjd" firstAttribute="centerY" secondItem="nfs-d7-oCc" secondAttribute="centerY" id="7T5-7B-xCQ"/>
-                                    <constraint firstItem="fBh-Ej-Rjd" firstAttribute="leading" secondItem="nfs-d7-oCc" secondAttribute="trailing" constant="9" id="HpN-8s-zEp"/>
-                                    <constraint firstItem="nfs-d7-oCc" firstAttribute="leading" secondItem="BY9-9O-SuX" secondAttribute="leading" constant="16" id="RAE-Rp-zXr"/>
+                                    <constraint firstItem="fBh-Ej-Rjd" firstAttribute="leading" secondItem="nfs-d7-oCc" secondAttribute="trailing" id="HpN-8s-zEp"/>
+                                    <constraint firstItem="nfs-d7-oCc" firstAttribute="leading" secondItem="BY9-9O-SuX" secondAttribute="leading" constant="8" id="RAE-Rp-zXr"/>
                                     <constraint firstAttribute="trailing" secondItem="fBh-Ej-Rjd" secondAttribute="trailing" id="jaS-ph-MJ9"/>
-                                    <constraint firstItem="nfs-d7-oCc" firstAttribute="centerY" secondItem="BY9-9O-SuX" secondAttribute="centerY" constant="4" id="p7K-L0-l2I"/>
+                                    <constraint firstItem="nfs-d7-oCc" firstAttribute="centerY" secondItem="BY9-9O-SuX" secondAttribute="centerY" constant="8" id="p7K-L0-l2I"/>
                                     <constraint firstAttribute="height" constant="65" id="rkY-hg-YSR"/>
                                 </constraints>
                             </view>
@@ -103,7 +103,7 @@
                                                 <rect key="frame" x="0.0" y="28" width="320" height="60"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="u9r-KJ-gLk" id="LYP-6E-XKG">
-                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="59.5"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="59"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                 </tableViewCellContentView>
                                             </tableViewCell>

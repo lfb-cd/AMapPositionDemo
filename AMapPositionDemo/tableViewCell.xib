@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
+    <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -21,28 +21,28 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="aSi-ei-pdf">
-                        <rect key="frame" x="10" y="17" width="20" height="27"/>
+                        <rect key="frame" x="10" y="10.5" width="12" height="16"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="20" id="0wC-Xn-i0p"/>
+                            <constraint firstAttribute="width" constant="12" id="0wC-Xn-i0p"/>
                             <constraint firstAttribute="width" secondItem="aSi-ei-pdf" secondAttribute="height" multiplier="14:19" id="Qc6-VI-y9C"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="长远天地大厦" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZvC-cs-Cpa">
-                        <rect key="frame" x="38" y="8" width="104" height="21"/>
+                        <rect key="frame" x="30" y="8" width="104" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="北京市海淀区苏州街18号" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ymz-0r-60m">
-                        <rect key="frame" x="38" y="29" width="158" height="17"/>
+                        <rect key="frame" x="30" y="29" width="158" height="17"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="aSi-ei-pdf" firstAttribute="centerY" secondItem="ZvC-cs-Cpa" secondAttribute="centerY" id="IAF-rz-J3G"/>
                     <constraint firstItem="Ymz-0r-60m" firstAttribute="leading" secondItem="ZvC-cs-Cpa" secondAttribute="leading" id="P35-E5-haS"/>
-                    <constraint firstItem="aSi-ei-pdf" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="QKd-bc-mWk"/>
                     <constraint firstItem="ZvC-cs-Cpa" firstAttribute="leading" secondItem="aSi-ei-pdf" secondAttribute="trailing" constant="8" id="QrJ-AG-fQo"/>
                     <constraint firstItem="ZvC-cs-Cpa" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="ncR-8H-aGv"/>
                     <constraint firstItem="aSi-ei-pdf" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="w78-4h-Lhh"/>

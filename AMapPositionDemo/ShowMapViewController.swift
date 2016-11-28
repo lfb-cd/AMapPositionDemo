@@ -9,7 +9,7 @@
 import UIKit
 import MapKit
 
-class ShowMapViewController: UIViewController, UITableViewDelegate,UITableViewDataSource, MAMapViewDelegate, AMapSearchDelegate,UISearchBarDelegate {
+class ShowMapViewController: UIViewController, UITableViewDelegate,UITableViewDataSource, MAMapViewDelegate, AMapSearchDelegate,UISearchBarDelegate, UIScrollViewDelegate {
 
     @IBOutlet weak var midView: UIView!
     @IBOutlet weak var mainViews: UIView!
@@ -54,7 +54,14 @@ class ShowMapViewController: UIViewController, UITableViewDelegate,UITableViewDa
         self.searchBar.backgroundImage = UIImage()
         self.searchBar.delegate = self
         self.searchBar.showsCancelButton = false
+//        self.searchBar.barTintColor = UIColor.white
+        UISearchBar.appearance().tintColor = UIColor.white
+//        [[UIBarButtonItem appearanceWhenContainedIn: [UISearchBar class], nil] setTintColor:[UIColor whiteColor]];
+//        [[UIBarButtonItem appearanceWhenContainedIn: [UISearchBar class], nil] setTitle:@"取消"];
+//        let cancleBtn = self.searchBar.value(forKey: "cancelButton") as! UIButton
+//        cancleBtn.setTitleColor(UIColor.white, for: UIControlState.normal)
         
+
         self.tableView.delegate = self
         self.tableView.dataSource = self
         self.tableView.register(UINib.init(nibName: "tableViewCell", bundle: nil), forCellReuseIdentifier: "tableViewCellID")
@@ -79,7 +86,7 @@ class ShowMapViewController: UIViewController, UITableViewDelegate,UITableViewDa
 //        mapView.userTrackingMode = MAUserTrackingMode.follow
 //        mapView.pausesLocationUpdatesAutomatically = false
 //        //        mapView.allowsBackgroundLocationUpdates = true
-//        mapView.distanceFilter = 10.0
+        mapView.distanceFilter = 10.0
 //        mapView.desiredAccuracy = kCLLocationAccuracyBestForNavigation
         
     }
@@ -121,9 +128,7 @@ class ShowMapViewController: UIViewController, UITableViewDelegate,UITableViewDa
             self.mapView.scaleOrigin = CGPoint(x: self.mapView.scaleOrigin.x, y: 22)
             self.mapView.showsCompass = false
             self.mapView.zoomLevel = 13.1
-            
             self.tableView.scrollToRow(at: IndexPath(item: 0, section: 0), at: .top, animated: true)
-            
         })
         
     }
@@ -172,7 +177,6 @@ class ShowMapViewController: UIViewController, UITableViewDelegate,UITableViewDa
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if tableView.tag == 10 {
-            
             return searchDataArray.count
         }
         return dataArray.count
@@ -180,18 +184,17 @@ class ShowMapViewController: UIViewController, UITableViewDelegate,UITableViewDa
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let tableCellidentify = "tableViewCellID"
-        
         let cell = tableView.dequeueReusableCell(withIdentifier: tableCellidentify, for: indexPath) as? tableViewCell
-        
         if tableView.tag == 10 {
+            
             let data = searchDataArray[indexPath.row] as? AMapTip
             cell?.titleLabel?.text = data?.name
             cell?.detailLabel?.text = data?.address
-            
         }else {
             let data = dataArray[indexPath.row] as? AMapPOI
             cell?.titleLabel?.text = data?.name
             cell?.detailLabel?.text = data?.address
+            
             if indexPath.row == 0 {
                 cell?.rightImage.image = UIImage(named: "location_current")
             }else {
@@ -209,7 +212,6 @@ class ShowMapViewController: UIViewController, UITableViewDelegate,UITableViewDa
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-
     }
     
     // MARK :mapView 回调
@@ -224,7 +226,7 @@ class ShowMapViewController: UIViewController, UITableViewDelegate,UITableViewDa
     }
     
     func mapView(_ mapView: MAMapView!, didSelect view: MAAnnotationView!) {
-        
+   
         if view.annotation is MAUserLocation {
             initAction()
         }
@@ -261,11 +263,9 @@ class ShowMapViewController: UIViewController, UITableViewDelegate,UITableViewDa
     func onReGeocodeSearchDone(_ request: AMapReGeocodeSearchRequest!, response: AMapReGeocodeSearchResponse!) {
         
         var str = response.regeocode.addressComponent.city;
-        
         if str != nil {
             str = response.regeocode.addressComponent.province
         }
-        
         self.mapView.userLocation.title = str;
         self.mapView.userLocation.subtitle = response.regeocode.formattedAddress
     }
@@ -306,6 +306,10 @@ class ShowMapViewController: UIViewController, UITableViewDelegate,UITableViewDa
         self.searchResult?.removeFromSuperview()
     }
     
+    func searchBarBookmarkButtonClicked(_ searchBar: UISearchBar) {
+        
+    }
+    
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         searchBar.showsCancelButton = true
     }
@@ -327,4 +331,10 @@ class ShowMapViewController: UIViewController, UITableViewDelegate,UITableViewDa
         }
     }
 
+    // MARK :scrollView delegate
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        searchBar.showsCancelButton = false
+        
+        searchBar.resignFirstResponder()
+    }
 }
