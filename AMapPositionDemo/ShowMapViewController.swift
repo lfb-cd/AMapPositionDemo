@@ -78,15 +78,12 @@ class ShowMapViewController: UIViewController, UITableViewDelegate,UITableViewDa
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        mapView.isShowsUserLocation = true
-        mapView.userTrackingMode = .follow
-        mapView.showsScale = false
         
-//        mapView.isShowsUserLocation = true
-//        mapView.userTrackingMode = MAUserTrackingMode.follow
+        
+
 //        mapView.pausesLocationUpdatesAutomatically = false
 //        //        mapView.allowsBackgroundLocationUpdates = true
-        mapView.distanceFilter = 10.0
+        
 //        mapView.desiredAccuracy = kCLLocationAccuracyBestForNavigation
         
     }
@@ -105,6 +102,12 @@ class ShowMapViewController: UIViewController, UITableViewDelegate,UITableViewDa
         mapView.scaleOrigin = CGPoint(x: mapView.scaleOrigin.x, y: 22)
         mapView.showsCompass = false
         mapView.zoomLevel = 13.1
+        mapView.distanceFilter = 100.0
+        
+        mapView.isShowsUserLocation = true
+        mapView.userTrackingMode = .follow
+        mapView.showsScale = false
+        mapView.logoCenter = CGPoint(x: mapView.bounds.size.width-mapView.logoSize.width + 25, y: self.mapView.bounds.size.height-mapView.logoSize.height+5)
         
         let but = UIButton.init(type: UIButtonType.custom)
         but.addTarget(self, action: #selector(tapped), for: UIControlEvents.touchUpInside)
@@ -217,11 +220,13 @@ class ShowMapViewController: UIViewController, UITableViewDelegate,UITableViewDa
     // MARK :mapView 回调
     
     func mapView(_ mapView: MAMapView!, didUpdate userLocation: MAUserLocation!, updatingLocation: Bool) {
-
-        if currentLocation == nil {
-            self.currentLocation = userLocation.location
-            initSearChs()
-        }
+        self.currentLocation = userLocation.location
+        
+//        print("-------- didUpdate userLocation ---------")
+        
+//        if currentLocation == nil {
+//            initSearChs()
+//        }
         
     }
     
@@ -236,6 +241,7 @@ class ShowMapViewController: UIViewController, UITableViewDelegate,UITableViewDa
         
         if didStopLocating {
             searchPOI(loca: CLLocation(latitude: mapView.centerCoordinate.latitude, longitude: mapView.centerCoordinate.longitude))
+            print("-------- searchPOI ---------")
         }
         
     }
