@@ -15,19 +15,19 @@ class ShowMapViewController: UIViewController, UITableViewDelegate,UITableViewDa
     @IBOutlet weak var mainViews: UIView!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var arrowImageView: UIImageView!
+    @IBOutlet weak var tapLocationBut: UIButton!
     
     var mapView: MAMapView!
     var dataArray: NSMutableArray!
     var searchDataArray: NSMutableArray!
-    
     var currentLocation: CLLocation!
     var search: AMapSearchAPI!
-    var city: String!
-    
+
     var didStopLocating:Bool = false
     var _searchResult:UITableView?
     
-    var searchResult: UITableView?{
+    var searchResult: UITableView? {
         
         get{
             if _searchResult != nil {
@@ -35,20 +35,24 @@ class ShowMapViewController: UIViewController, UITableViewDelegate,UITableViewDa
                     self.mainViews.addSubview(_searchResult!)
                 }
             }else {
-                _searchResult = UITableView.init(frame: self.mainViews.bounds)
-                _searchResult?.register(UINib.init(nibName: "tableViewCell", bundle: nil), forCellReuseIdentifier: "tableViewCellID")
-                _searchResult?.delegate = self
-                _searchResult?.dataSource = self
-                _searchResult?.tag = 10
-                
-                self.mainViews.addSubview(_searchResult!)
-                self.mainViews.bringSubview(toFront: _searchResult!)
+                DispatchQueue.global().async {
+                    self._searchResult = UITableView.init(frame: self.mainViews.bounds)
+                    self._searchResult?.register(UINib.init(nibName: "tableViewCell", bundle: nil), forCellReuseIdentifier: "tableViewCellID")
+                    self._searchResult?.delegate = self
+                    self._searchResult?.dataSource = self
+                    self._searchResult?.tag = 10
+                    DispatchQueue.main.async {
+                        self.mainViews.addSubview(self._searchResult!)
+                        self.mainViews.bringSubview(toFront:self._searchResult!)
+                    }
+                }
             }
             
             return _searchResult
         }
     }
     
+    //MARK:- viewload - 生命周期
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -59,64 +63,53 @@ class ShowMapViewController: UIViewController, UITableViewDelegate,UITableViewDa
         dataArray = NSMutableArray()
         searchDataArray = NSMutableArray()
         initSearchBar()
-        initMapView()
         initSearch()
+        initMapView()
+    }
+    override func viewWillAppear(_ animated: Bool) {
+
+    }
+    override func viewDidAppear(_ animated: Bool) {
         
     }
-
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-//        mapView.pausesLocationUpdatesAutomatically = false
-//        //        mapView.allowsBackgroundLocationUpdates = true
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return UIStatusBarStyle.lightContent
     }
-    
     //MARK:- Initialization - 初始化操作
     
     func initMapView() {
-        
         mapView = MAMapView(frame: self.midView.bounds)
-        mapView.compassOrigin = CGPoint(x: mapView.compassOrigin.x, y: 22)
-        mapView.scaleOrigin = CGPoint(x: mapView.scaleOrigin.x, y: 22)
         mapView.showsCompass = false
-        mapView.zoomLevel = 13.1
+        mapView.zoomLevel = 15.1
         mapView.distanceFilter = 100.0
         
         mapView.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
         mapView.isShowsUserLocation = true
         mapView.userTrackingMode = .follow
         mapView.showsScale = false
-        mapView.logoCenter = CGPoint(x: mapView.bounds.size.width-mapView.logoSize.width + 25, y: self.mapView.bounds.size.height-mapView.logoSize.height+5)
+        mapView.logoCenter = CGPoint(x: self.mapView.frame.size.width-mapView.logoSize.width + 25, y: self.mapView.frame.size.height-mapView.logoSize.height+5)
         mapView.mapType = .standard
         mapView.delegate = self
         self.midView.addSubview(mapView)
+        self.midView.bringSubview(toFront: self.arrowImageView)
+        self.midView.bringSubview(toFront: self.tapLocationBut)
         
-        let but = UIButton.init(type: UIButtonType.custom)
-        but.addTarget(self, action: #selector(tapped), for: UIControlEvents.touchUpInside)
-        but.frame = CGRect(x: self.midView.bounds.origin.x+10, y: self.midView.bounds.origin.y + self.midView.bounds.size.height - 35, width: 25, height: 25)
-        but.setImage(UIImage(named: "gpsStat1"), for: UIControlState.normal)
-        
-        self.mapView.addSubview(but)
-        
-        let arraImage = UIImageView(frame: CGRect(origin: CGPoint(x:self.mapView.center.x-20,y:self.mapView.center.y - 20), size: CGSize(width: 28, height: 38)))
-        arraImage.center = CGPoint(x: self.mapView.center.x, y: self.mapView.center.y - arraImage.frame.size.height/2+1)
-        arraImage.image = UIImage(named: "arrow")
-        self.mapView.addSubview(arraImage)
-        
+//        let but = UIButton.init(type: UIButtonType.custom)
+//        but.addTarget(self, action: #selector(tapped), for: UIControlEvents.touchUpInside)
+//        but.frame = CGRect(x: self.midView.bounds.origin.x+10, y: self.midView.bounds.origin.y + self.midView.bounds.size.height - 35, width: 25, height: 25)
+//        but.setImage(UIImage(named: "gpsStat1"), for: UIControlState.normal)
+//        self.mapView.addSubview(but)
+//        let arraImage = UIImageView(frame: CGRect(origin: CGPoint(x:self.mapView.center.x-20,y:self.mapView.center.y - 20), size: CGSize(width: 28, height: 38)))
+//        arraImage.center = CGPoint(x: self.mapView.center.x, y: self.mapView.center.y - arraImage.frame.size.height/2+1)
+//        arraImage.image = UIImage(named: "arrow")
+//        self.mapView.addSubview(arraImage)
     }
     
-    
-    func tapped() {
-        UIView.animate(withDuration: 0.3, animations: {
-            self.mapView.centerCoordinate = CLLocationCoordinate2D(latitude: self.currentLocation.coordinate.latitude, longitude: self.currentLocation.coordinate.longitude)
-            self.mapView.compassOrigin = CGPoint(x: self.mapView.compassOrigin.x, y: 22)
-            self.mapView.scaleOrigin = CGPoint(x: self.mapView.scaleOrigin.x, y: 22)
-            self.mapView.showsCompass = false
-            self.mapView.zoomLevel = 13.1
-            self.tableView.scrollToRow(at: IndexPath(item: 0, section: 0), at: .top, animated: true)
-        })
+    func setMapView() {
         
     }
     
@@ -125,39 +118,38 @@ class ShowMapViewController: UIViewController, UITableViewDelegate,UITableViewDa
         searchBar.delegate = self
         searchBar.showsCancelButton = false
         UISearchBar.appearance().tintColor = UIColor.white
+        
+        let view: UIView = self.searchBar.subviews[0] as UIView
+        for subView: UIView in view.subviews {
+            if subView is UITextField{
+                subView.tintColor = #colorLiteral(red: 0.184442997, green: 0.6405849457, blue: 1, alpha: 1)
+            }
+        }
     }
-    
     func initSearch() {
         search = AMapSearchAPI()
         search.delegate = self
     }
-    
     func initSearChs() {
         if currentLocation == nil || search == nil {
             return
         }
         
-        let request = AMapPOIAroundSearchRequest()
-        request.location = AMapGeoPoint.location(withLatitude: CGFloat(currentLocation.coordinate.latitude), longitude: CGFloat(currentLocation.coordinate.longitude))
-        
-        request.types = "风景名胜|商务住宅|政府机构及社会团体|交通设施服务|道路附属设施|地名地址信息"
-        request.sortrule = 0
-        request.requireExtension = true
-        
-        search.aMapPOIAroundSearch(request)
+        searchPOI(loca: currentLocation)
     }
     
+    //MARK:- searchPOI By CLLocation  根据地理坐标搜索
     func searchPOI(loca:CLLocation) {
         let request = AMapPOIAroundSearchRequest()
         request.location = AMapGeoPoint.location(withLatitude: CGFloat(loca.coordinate.latitude), longitude: CGFloat(loca.coordinate.longitude))
-        
-        request.types = "风景名胜|商务住宅|政府机构及社会团体|交通设施服务|道路附属设施|地名地址信息"
+        request.types = "风景名胜|商务住宅|政府机构及社会团体|交通设施服务|道路附属设施|地名地址信息|高等院校"
         request.sortrule = 0
+        request.offset = 30
         request.requireExtension = true
         search.aMapPOIAroundSearch(request)
     }
     
-    // 搜索周围
+    //MARK:- AMapSearchDelegate  POI查询回调函数
     func onPOISearchDone(_ request: AMapPOISearchBaseRequest!, response: AMapPOISearchResponse!) {
         if response.pois.count == 0 {
             return
@@ -167,7 +159,7 @@ class ShowMapViewController: UIViewController, UITableViewDelegate,UITableViewDa
         self.tableView.scrollToRow(at: IndexPath(item: 0, section: 0), at: .top, animated: true)
     }
     
-    // MARK: tableView delegate table代理
+    // MARK: tableView delegate
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if tableView.tag == 10 {
@@ -181,9 +173,22 @@ class ShowMapViewController: UIViewController, UITableViewDelegate,UITableViewDa
         let cell = tableView.dequeueReusableCell(withIdentifier: tableCellidentify, for: indexPath) as? tableViewCell
         if tableView.tag == 10 {
             
-            let data = searchDataArray[indexPath.row] as? AMapTip
-            cell?.titleLabel?.text = data?.name
-            cell?.detailLabel?.text = data?.address
+            if searchDataArray[indexPath.row] is AMapTip {
+                let data = searchDataArray[indexPath.row] as? AMapTip
+                cell?.titleLabel?.text = data?.name
+                cell?.detailLabel?.text = data?.address
+            }else if searchDataArray[indexPath.row] is AMapPOI {
+                let data = searchDataArray[indexPath.row] as? AMapPOI
+                cell?.titleLabel?.text = data?.name
+                cell?.detailLabel?.text = data?.address
+            }
+            
+            if indexPath.row == 0 {
+                cell?.rightImage.image = UIImage(named: "location_current")
+            }else {
+                cell?.rightImage.image = nil
+            }
+            
         }else {
             let data = dataArray[indexPath.row] as? AMapPOI
             cell?.titleLabel?.text = data?.name
@@ -194,7 +199,6 @@ class ShowMapViewController: UIViewController, UITableViewDelegate,UITableViewDa
             }else {
                 cell?.rightImage.image = UIImage(named: "location_other")
             }
-            
         }
         
         return cell!
@@ -208,13 +212,11 @@ class ShowMapViewController: UIViewController, UITableViewDelegate,UITableViewDa
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
-    // MARK :mapView 回调
+    // MARK :MAMapViewDelegate 回调
     
     func mapView(_ mapView: MAMapView!, didUpdate userLocation: MAUserLocation!, updatingLocation: Bool) {
         self.currentLocation = userLocation.location
-        
 //        print("-------- didUpdate userLocation ---------")
-        
 //        if currentLocation == nil {
 //            initSearChs()
 //        }
@@ -222,9 +224,8 @@ class ShowMapViewController: UIViewController, UITableViewDelegate,UITableViewDa
     }
     
     func mapView(_ mapView: MAMapView!, didSelect view: MAAnnotationView!) {
-   
         if view.annotation is MAUserLocation {
-            initAction()
+            tapAction()
         }
     }
     
@@ -232,11 +233,9 @@ class ShowMapViewController: UIViewController, UITableViewDelegate,UITableViewDa
         
         if didStopLocating {
             searchPOI(loca: CLLocation(latitude: mapView.centerCoordinate.latitude, longitude: mapView.centerCoordinate.longitude))
-            print("-------- searchPOI ---------")
         }
         
     }
-    
     
     func mapView(_ mapView: MAMapView!, mapWillMoveByUser wasUserAction: Bool) {
         didStopLocating = false
@@ -244,17 +243,6 @@ class ShowMapViewController: UIViewController, UITableViewDelegate,UITableViewDa
     
     func mapView(_ mapView: MAMapView!, mapDidMoveByUser wasUserAction: Bool) {
         didStopLocating = true
-    }
-    
-    func initAction (){
-        if ((self.currentLocation) != nil) {
-            
-            let request = AMapReGeocodeSearchRequest()
-            request.location = AMapGeoPoint.location(withLatitude: CGFloat(self.currentLocation.coordinate.latitude
-            ), longitude: CGFloat(self.currentLocation.coordinate.longitude))
-            
-            search.aMapReGoecodeSearch(request)
-        }
     }
     
     func onReGeocodeSearchDone(_ request: AMapReGeocodeSearchRequest!, response: AMapReGeocodeSearchResponse!) {
@@ -267,11 +255,7 @@ class ShowMapViewController: UIViewController, UITableViewDelegate,UITableViewDa
         self.mapView.userLocation.subtitle = response.regeocode.formattedAddress
     }
     
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return UIStatusBarStyle.lightContent
-    }
-    
-    // MARK :search delegate -- 搜索的回调
+    // MARK: search delegate 搜索结果的回调
     func onInputTipsSearchDone(_ request: AMapInputTipsSearchRequest!, response: AMapInputTipsSearchResponse!) {
         
         if response.count == 0 {
@@ -281,14 +265,10 @@ class ShowMapViewController: UIViewController, UITableViewDelegate,UITableViewDa
         self.searchResult?.reloadData()
     }
 
-    
+    // MARK: UISearchBarDelegate UISearchBar的代理
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         
-        let tips = AMapInputTipsSearchRequest()
-        tips.keywords = searchBar.text;
-        tips.city     = "北京";
-        //    tips.cityLimit = YES; 是否限制城市
-        self.search.aMapInputTipsSearch(tips);
+        searchArround(str: searchBar.text!)
         print(searchText)
     }
     
@@ -305,14 +285,15 @@ class ShowMapViewController: UIViewController, UITableViewDelegate,UITableViewDa
     
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         searchBar.showsCancelButton = true
+//        searchArround(str: currentAddress)
+        self.searchDataArray = self.dataArray
+        self.searchResult?.reloadData()
     }
     
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
         
         if searchBar.text == "" {
             searchBar.showsCancelButton = false
-        }else {
-
         }
     }
 
@@ -322,9 +303,38 @@ class ShowMapViewController: UIViewController, UITableViewDelegate,UITableViewDa
         searchBar.resignFirstResponder()
     }
     
+    // MARK :help func
+    func tapAction (){
+        
+        if ((self.currentLocation) != nil) {
+            let request = AMapReGeocodeSearchRequest()
+            request.location = AMapGeoPoint.location(withLatitude: CGFloat(self.currentLocation.coordinate.latitude
+            ), longitude: CGFloat(self.currentLocation.coordinate.longitude))
+            
+            search.aMapReGoecodeSearch(request)
+        }
+    }
+    
+    func searchArround(str:String){
+        let tips = AMapInputTipsSearchRequest()
+        tips.keywords = str;
+        tips.city     = "北京";
+        //    tips.cityLimit = YES; 是否限制城市
+        self.search.aMapInputTipsSearch(tips);
+    }
     
     // MARK :Target
+    @IBAction func tapped(_ sender: Any) {
+        UIView.animate(withDuration: 0.3, animations: {
+            self.mapView.centerCoordinate = CLLocationCoordinate2D(latitude: self.currentLocation.coordinate.latitude, longitude: self.currentLocation.coordinate.longitude)
+            self.mapView.showsCompass = false
+            self.mapView.zoomLevel = 15.1
+            self.tableView.scrollToRow(at: IndexPath(item: 0, section: 0), at: .top, animated: true)
+        })
+    }
+    
     @IBAction func back(_ sender: Any) {
         
     }
+    
 }

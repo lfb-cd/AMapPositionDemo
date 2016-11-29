@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		67C66ABD1DED5C0500826B60 /* AMap.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 67C66ABC1DED5C0500826B60 /* AMap.bundle */; };
 		67D6BE421DE810E30095EEDC /* AMapFoundationKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67D6BE401DE810E30095EEDC /* AMapFoundationKit.framework */; };
 		67D6BE431DE810E30095EEDC /* AMapSearchKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67D6BE411DE810E30095EEDC /* AMapSearchKit.framework */; };
 		67D6BE461DE8128A0095EEDC /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 67D6BE451DE8128A0095EEDC /* libc++.tbd */; };
@@ -33,6 +34,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		67C66ABC1DED5C0500826B60 /* AMap.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = AMap.bundle; path = MAMapKit.framework/AMap.bundle; sourceTree = "<group>"; };
 		67D6BE3F1DE810A20095EEDC /* AMapPositionDemo-Bridge-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AMapPositionDemo-Bridge-Header.h"; sourceTree = "<group>"; };
 		67D6BE401DE810E30095EEDC /* AMapFoundationKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AMapFoundationKit.framework; sourceTree = "<group>"; };
 		67D6BE411DE810E30095EEDC /* AMapSearchKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AMapSearchKit.framework; sourceTree = "<group>"; };
@@ -126,6 +128,7 @@
 		67F5AA0C1DE80ED100B812A6 /* AMapPositionDemo */ = {
 			isa = PBXGroup;
 			children = (
+				67C66ABC1DED5C0500826B60 /* AMap.bundle */,
 				67D6BE611DE82A8E0095EEDC /* MAMapKit.framework */,
 				67D6BE401DE810E30095EEDC /* AMapFoundationKit.framework */,
 				67D6BE411DE810E30095EEDC /* AMapSearchKit.framework */,
@@ -203,6 +206,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				67C66ABD1DED5C0500826B60 /* AMap.bundle in Resources */,
 				67F5AA181DE80ED100B812A6 /* LaunchScreen.storyboard in Resources */,
 				67D6BE5E1DE822B70095EEDC /* tableViewCell.xib in Resources */,
 				67F5AA151DE80ED100B812A6 /* Assets.xcassets in Resources */,
