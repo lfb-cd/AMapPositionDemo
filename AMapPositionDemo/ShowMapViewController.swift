@@ -51,23 +51,14 @@ class ShowMapViewController: UIViewController, UITableViewDelegate,UITableViewDa
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.searchBar.backgroundImage = UIImage()
-        self.searchBar.delegate = self
-        self.searchBar.showsCancelButton = false
-//        self.searchBar.barTintColor = UIColor.white
-        UISearchBar.appearance().tintColor = UIColor.white
-//        [[UIBarButtonItem appearanceWhenContainedIn: [UISearchBar class], nil] setTintColor:[UIColor whiteColor]];
-//        [[UIBarButtonItem appearanceWhenContainedIn: [UISearchBar class], nil] setTitle:@"取消"];
-//        let cancleBtn = self.searchBar.value(forKey: "cancelButton") as! UIButton
-//        cancleBtn.setTitleColor(UIColor.white, for: UIControlState.normal)
         
-
         self.tableView.delegate = self
         self.tableView.dataSource = self
         self.tableView.register(UINib.init(nibName: "tableViewCell", bundle: nil), forCellReuseIdentifier: "tableViewCellID")
         
         dataArray = NSMutableArray()
         searchDataArray = NSMutableArray()
+        initSearchBar()
         initMapView()
         initSearch()
         
@@ -78,36 +69,29 @@ class ShowMapViewController: UIViewController, UITableViewDelegate,UITableViewDa
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        
-        
-
 //        mapView.pausesLocationUpdatesAutomatically = false
 //        //        mapView.allowsBackgroundLocationUpdates = true
-        
-//        mapView.desiredAccuracy = kCLLocationAccuracyBestForNavigation
-        
     }
-    
     
     //MARK:- Initialization - 初始化操作
     
     func initMapView() {
         
         mapView = MAMapView(frame: self.midView.bounds)
-        mapView.mapType = .standard
-        self.midView.addSubview(mapView)
-        mapView.delegate = self
-        
         mapView.compassOrigin = CGPoint(x: mapView.compassOrigin.x, y: 22)
         mapView.scaleOrigin = CGPoint(x: mapView.scaleOrigin.x, y: 22)
         mapView.showsCompass = false
         mapView.zoomLevel = 13.1
         mapView.distanceFilter = 100.0
         
+        mapView.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
         mapView.isShowsUserLocation = true
         mapView.userTrackingMode = .follow
         mapView.showsScale = false
         mapView.logoCenter = CGPoint(x: mapView.bounds.size.width-mapView.logoSize.width + 25, y: self.mapView.bounds.size.height-mapView.logoSize.height+5)
+        mapView.mapType = .standard
+        mapView.delegate = self
+        self.midView.addSubview(mapView)
         
         let but = UIButton.init(type: UIButtonType.custom)
         but.addTarget(self, action: #selector(tapped), for: UIControlEvents.touchUpInside)
@@ -117,7 +101,7 @@ class ShowMapViewController: UIViewController, UITableViewDelegate,UITableViewDa
         self.mapView.addSubview(but)
         
         let arraImage = UIImageView(frame: CGRect(origin: CGPoint(x:self.mapView.center.x-20,y:self.mapView.center.y - 20), size: CGSize(width: 28, height: 38)))
-        arraImage.center = CGPoint(x: self.mapView.center.x-0.5, y: self.mapView.center.y - arraImage.frame.size.height/2+1)
+        arraImage.center = CGPoint(x: self.mapView.center.x, y: self.mapView.center.y - arraImage.frame.size.height/2+1)
         arraImage.image = UIImage(named: "arrow")
         self.mapView.addSubview(arraImage)
         
@@ -134,6 +118,13 @@ class ShowMapViewController: UIViewController, UITableViewDelegate,UITableViewDa
             self.tableView.scrollToRow(at: IndexPath(item: 0, section: 0), at: .top, animated: true)
         })
         
+    }
+    
+    func initSearchBar() {
+        searchBar.backgroundImage = UIImage()
+        searchBar.delegate = self
+        searchBar.showsCancelButton = false
+        UISearchBar.appearance().tintColor = UIColor.white
     }
     
     func initSearch() {
@@ -280,7 +271,7 @@ class ShowMapViewController: UIViewController, UITableViewDelegate,UITableViewDa
         return UIStatusBarStyle.lightContent
     }
     
-    // MARK :搜索的回调
+    // MARK :search delegate -- 搜索的回调
     func onInputTipsSearchDone(_ request: AMapInputTipsSearchRequest!, response: AMapInputTipsSearchResponse!) {
         
         if response.count == 0 {
@@ -312,20 +303,8 @@ class ShowMapViewController: UIViewController, UITableViewDelegate,UITableViewDa
         self.searchResult?.removeFromSuperview()
     }
     
-    func searchBarBookmarkButtonClicked(_ searchBar: UISearchBar) {
-        
-    }
-    
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         searchBar.showsCancelButton = true
-    }
-    
-    @IBAction func back(_ sender: Any) {
-
-    }
-    
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-
     }
     
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
@@ -340,7 +319,12 @@ class ShowMapViewController: UIViewController, UITableViewDelegate,UITableViewDa
     // MARK :scrollView delegate
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         searchBar.showsCancelButton = false
-        
         searchBar.resignFirstResponder()
+    }
+    
+    
+    // MARK :Target
+    @IBAction func back(_ sender: Any) {
+        
     }
 }
