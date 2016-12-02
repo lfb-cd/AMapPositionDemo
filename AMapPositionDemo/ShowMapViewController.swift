@@ -9,7 +9,7 @@
 import UIKit
 import MapKit
 
-class ShowMapViewController: UIViewController, UITableViewDelegate,UITableViewDataSource, MAMapViewDelegate, AMapSearchDelegate,UISearchBarDelegate, UIScrollViewDelegate {
+class ShowMapViewController: UIViewController, MAMapViewDelegate, AMapSearchDelegate,UISearchBarDelegate {
 
     @IBOutlet weak var midView: UIView!
     @IBOutlet weak var mainViews: UIView!
@@ -161,56 +161,7 @@ class ShowMapViewController: UIViewController, UITableViewDelegate,UITableViewDa
     
     // MARK: tableView delegate
 
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if tableView.tag == 10 {
-            return searchDataArray.count
-        }
-        return dataArray.count
-    }
-
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let tableCellidentify = "tableViewCellID"
-        let cell = tableView.dequeueReusableCell(withIdentifier: tableCellidentify, for: indexPath) as? tableViewCell
-        if tableView.tag == 10 {
-            
-            if searchDataArray[indexPath.row] is AMapTip {
-                let data = searchDataArray[indexPath.row] as? AMapTip
-                cell?.titleLabel?.text = data?.name
-                cell?.detailLabel?.text = data?.address
-            }else if searchDataArray[indexPath.row] is AMapPOI {
-                let data = searchDataArray[indexPath.row] as? AMapPOI
-                cell?.titleLabel?.text = data?.name
-                cell?.detailLabel?.text = data?.address
-            }
-            
-            if indexPath.row == 0 {
-                cell?.rightImage.image = UIImage(named: "location_current")
-            }else {
-                cell?.rightImage.image = nil
-            }
-            
-        }else {
-            let data = dataArray[indexPath.row] as? AMapPOI
-            cell?.titleLabel?.text = data?.name
-            cell?.detailLabel?.text = data?.address
-            
-            if indexPath.row == 0 {
-                cell?.rightImage.image = UIImage(named: "location_current")
-            }else {
-                cell?.rightImage.image = UIImage(named: "location_other")
-            }
-        }
-        
-        return cell!
-    }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 60
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-    }
     
     // MARK :MAMapViewDelegate 回调
     
@@ -220,7 +171,6 @@ class ShowMapViewController: UIViewController, UITableViewDelegate,UITableViewDa
 //        if currentLocation == nil {
 //            initSearChs()
 //        }
-        
     }
     
     func mapView(_ mapView: MAMapView!, didSelect view: MAAnnotationView!) {
@@ -285,7 +235,6 @@ class ShowMapViewController: UIViewController, UITableViewDelegate,UITableViewDa
     
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         searchBar.showsCancelButton = true
-//        searchArround(str: currentAddress)
         self.searchDataArray = self.dataArray
         self.searchResult?.reloadData()
     }
@@ -325,6 +274,10 @@ class ShowMapViewController: UIViewController, UITableViewDelegate,UITableViewDa
     
     // MARK :Target
     @IBAction func tapped(_ sender: Any) {
+        if self.currentLocation == nil {
+            return
+        }
+        
         UIView.animate(withDuration: 0.3, animations: {
             self.mapView.centerCoordinate = CLLocationCoordinate2D(latitude: self.currentLocation.coordinate.latitude, longitude: self.currentLocation.coordinate.longitude)
             self.mapView.showsCompass = false

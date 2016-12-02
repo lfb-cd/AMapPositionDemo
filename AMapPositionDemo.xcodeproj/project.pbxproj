@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6768E8CF1DF14990000A3EF8 /* ShowMapViewController+UITableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6768E8CE1DF14990000A3EF8 /* ShowMapViewController+UITableViewDelegate.swift */; };
 		67C66ABD1DED5C0500826B60 /* AMap.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 67C66ABC1DED5C0500826B60 /* AMap.bundle */; };
 		67D6BE421DE810E30095EEDC /* AMapFoundationKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67D6BE401DE810E30095EEDC /* AMapFoundationKit.framework */; };
 		67D6BE431DE810E30095EEDC /* AMapSearchKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67D6BE411DE810E30095EEDC /* AMapSearchKit.framework */; };
@@ -34,6 +35,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6768E8CE1DF14990000A3EF8 /* ShowMapViewController+UITableViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ShowMapViewController+UITableViewDelegate.swift"; sourceTree = "<group>"; };
 		67C66ABC1DED5C0500826B60 /* AMap.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = AMap.bundle; path = MAMapKit.framework/AMap.bundle; sourceTree = "<group>"; };
 		67D6BE3F1DE810A20095EEDC /* AMapPositionDemo-Bridge-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AMapPositionDemo-Bridge-Header.h"; sourceTree = "<group>"; };
 		67D6BE401DE810E30095EEDC /* AMapFoundationKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AMapFoundationKit.framework; sourceTree = "<group>"; };
@@ -136,6 +138,7 @@
 				67D6BE3F1DE810A20095EEDC /* AMapPositionDemo-Bridge-Header.h */,
 				67F5AA0F1DE80ED100B812A6 /* ViewController.swift */,
 				67D6BE5F1DE8243F0095EEDC /* ShowMapViewController.swift */,
+				6768E8CE1DF14990000A3EF8 /* ShowMapViewController+UITableViewDelegate.swift */,
 				67D6BE5B1DE822B70095EEDC /* tableViewCell.swift */,
 				67D6BE5C1DE822B70095EEDC /* tableViewCell.xib */,
 				67F5AA111DE80ED100B812A6 /* Main.storyboard */,
@@ -224,6 +227,7 @@
 				67D6BE601DE8243F0095EEDC /* ShowMapViewController.swift in Sources */,
 				67F5AA101DE80ED100B812A6 /* ViewController.swift in Sources */,
 				67F5AA0E1DE80ED100B812A6 /* AppDelegate.swift in Sources */,
+				6768E8CF1DF14990000A3EF8 /* ShowMapViewController+UITableViewDelegate.swift in Sources */,
 				67D6BE5D1DE822B70095EEDC /* tableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -347,6 +351,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = NM3KV9DZE7;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -358,7 +363,8 @@
 				OTHER_LDFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.lifubing.demo.AMapPositionDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "/Users/lifubing/Documents/SwiftDemo/AMapPositionDemo/AMapPositionDemo/AMapPositionDemo-Bridge-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "/Users/lifubing/Desktop/SwiftDemo/AMapPositionDemo/AMapPositionDemo/AMapPositionDemo-Bridge-Header.h";
+				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -367,6 +373,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = NM3KV9DZE7;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -378,7 +385,8 @@
 				OTHER_LDFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.lifubing.demo.AMapPositionDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "/Users/lifubing/Documents/SwiftDemo/AMapPositionDemo/AMapPositionDemo/AMapPositionDemo-Bridge-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "/Users/lifubing/Desktop/SwiftDemo/AMapPositionDemo/AMapPositionDemo/AMapPositionDemo-Bridge-Header.h";
+				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
